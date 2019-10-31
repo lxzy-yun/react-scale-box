@@ -1,0 +1,36 @@
+@import "./style/reset";
+html, body, #root {
+  height: 100%;
+}
+
+canvas{
+  display: block;
+}
+
+.chart-box{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.box-title{
+  flex: 0 0 40px;
+  background:linear-gradient(90deg,rgba(72,65,167,1) 0%,rgba(50,65,167,0) 100%);
+  .title{
+    display: flex;
+    align-items: center;
+    color: #fff;
+    padding-left: 10px;
+    height: 100%;
+    img{
+      width: 23px;
+      height: 23px;
+      margin-right: 10px;
+    }
+  }
+}
+
+.chart-cont{
+  flex: 1;
+  overflow: hidden
+}
