@@ -1,31 +1,58 @@
-import React, { Component } from 'react';
-import debounce from 'lodash.debounce'
-import s from './index.less'
+import React, {Component} from 'react';
+import PropTypes from 'prop-types'
+import './index.less'
 
-class Comp extends Component{
+function debounce(fn, delay) {
+  let delays = delay || 500;
+  let timer;
+  return function () {
+    let th = this;
+    let args = arguments;
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(function () {
+      timer = null;
+      fn.apply(th, args);
+    }, delays);
+  };
+}
+
+class Comp extends Component {
+  static propTypes = {
+    width: PropTypes.number,
+    height: PropTypes.number
+  }
+  static defaultProps = {
+    width: 1920,
+    height: 1080
+  }
+
   constructor(p) {
     super(p)
-    this.state={
+    this.state = {
       scale: this.getScale()
     }
   }
+
   componentDidMount() {
-    this.setScale()
     window.addEventListener('resize', this.setScale)
   }
-  getScale=() => {
-    const {width=1920, height=1080} = this.props
-    let ww=window.innerWidth/width
-    let wh=window.innerHeight/height
-    return ww<wh?ww: wh
+
+  getScale = () => {
+    const {width, height} = this.props
+    let ww = window.innerWidth / width
+    let wh = window.innerHeight / height
+    return ww < wh ? ww : wh
   }
   setScale = debounce(() => {
-    this.setState({ scale: this.getScale() })
-  }, 500)
+    this.setState({scale: this.getScale()})
+  })
+
   render() {
-    const {width=1920, height=1080, children} = this.props
+    const {width, height} = this.props
     const {scale} = this.state
-    return(
+    return (
       <div
         className={'scale-box'}
         style={{
@@ -35,10 +62,11 @@ class Comp extends Component{
           height
         }}
       >
-        {children}
+        {this.props.children}
       </div>
     )
   }
+
   componentWillUnmount() {
     window.removeEventListener('resize', this.setScale)
   }

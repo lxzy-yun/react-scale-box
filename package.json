@@ -1,11 +1,18 @@
 {
   "name": "react-scale-box",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "./dist/index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
     "dev": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lxzy-yun/react-scale-box.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lxzy-yun/react-scale-box/issues"
   },
   "author": {
     "name": "caijingyun",
@@ -16,10 +23,8 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "echarts": "^4.2.1",
-    "lodash.debounce": "^4.0.8",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-amap": "^1.2.8",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
